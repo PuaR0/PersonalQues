@@ -28,10 +28,6 @@ class QuestionsViewController: UIViewController {
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        <#code#>
-    }
-    
     @IBOutlet var qustionProgressView: UIProgressView!
     
     private let questions = Question.getQuestions()
@@ -44,6 +40,11 @@ class QuestionsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let resultVC = segue.destination as? ResultsViewController else { return }
+        resultVC.answers = answersChoosen
     }
     
     @IBAction func singleButtonAnswerPressed(_ sender: UIButton) {
